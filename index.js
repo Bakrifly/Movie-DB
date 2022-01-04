@@ -109,3 +109,27 @@ app.get("/movies/delete/:ID", (req, res)=>{
         {movies.splice(ID, 1);
         res.status(200).json({status:200, Data: movies})}
 })
+
+
+//==== step 10 UPDATE ====
+
+app.get("/movies/update/:ID", (req, res)=>{
+
+    const ID = parseInt(req.params.ID);
+    const title = req.query.title;
+    const year = parseInt(req.query.year);
+    const rating = parseInt(req.query.rating);
+
+    if(ID >= movies.length || ID < 0)
+    {res.status(404).json({status:404, error: true, message:"the movie <ID> does not exist"})}
+
+    else {
+        if(title !== undefined && title !== "")
+            {movies[ID].title = title};
+        if(!isNaN(year) && year.toString().length === 4 )
+            {movies[ID].year = year};
+        if(rating !== undefined && rating !== "" && !isNaN(rating) )
+            {movies[ID].rating = rating};
+    
+    res.status(200).json({status:200, data: movies})
+}})
