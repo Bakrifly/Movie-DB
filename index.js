@@ -96,3 +96,16 @@ app.get("/movies/add", (req, res)=>{
         }
 }
 )
+
+//==== step 9 DELETE ====
+
+app.get("/movies/delete/:ID", (req, res)=>{
+
+    const ID = req.params.ID
+
+    if(ID < 0 || ID >= movies.length)
+        {res.status(404).json({status:404, error: true, message:"the movie <ID> does not exist"})}
+    else
+        {movies.splice(ID, 1);
+        res.status(200).json({status:200, Data: movies})}
+})
