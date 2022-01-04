@@ -78,3 +78,21 @@ app.get("/movies/read/id/:ID", (req, res)=>{
     }
 }
 )
+
+
+//==== step 8 CREATE ====
+
+app.get("/movies/add", (req, res)=>{
+
+    const title = req.query.title;
+    const year = parseInt(req.query.year);
+    const rating = req.query.rating || 4;
+
+    if(title === undefined || title ==="" || isNaN(year) || year.toString().length < 4)
+        {res.status(403).json({status: 403, error: true, message: "you cannot creat a movie without providing a title and a year"})}
+    else {
+        movies.push({title: title, year: year, rating: rating})
+        res.status(200).json({status:200, data: movies})
+        }
+}
+)
