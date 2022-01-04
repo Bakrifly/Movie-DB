@@ -49,7 +49,7 @@ app.get("/movies/update", (req, res)=>{});
 app.get("/movies/delete", (req, res)=>{});
 
 
-//==== step 5 search ====
+//==== step 6 search ====
 
 app.get("/movies/read/by-date", (req, res)=>{ 
     res.json({status:200, data: movies.sort((a,b)=>{return (b.year - a.year)})})   
@@ -64,3 +64,17 @@ app.get("/movies/read/by-title", (req, res)=>{
         return a.title.localeCompare(b.title);
       })})
 })
+
+
+//==== step 7 Read one ====
+
+app.get("/movies/read/id/:ID", (req, res)=>{
+
+    let ID = parseInt(req.params.ID)
+    if (ID >= movies.length || ID < 0)
+        {res.status(404).json({status: 404, error:true, message: "the movie <ID> does not exist"})}
+    else {
+        res.json({status:200, Data:movies[ID]})
+    }
+}
+)
