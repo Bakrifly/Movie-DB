@@ -82,7 +82,7 @@ app.get("/movies/read/id/:ID", (req, res)=>{
 
 //==== step 8 CREATE ====
 
-app.get("/movies/add", (req, res)=>{
+app.post("/movies/add", (req, res)=>{
 
     const title = req.query.title;
     const year = parseInt(req.query.year);
@@ -99,7 +99,7 @@ app.get("/movies/add", (req, res)=>{
 
 //==== step 9 DELETE ====
 
-app.get("/movies/delete/:ID", (req, res)=>{
+app.delete("/movies/delete/:ID", (req, res)=>{
 
     const ID = req.params.ID
 
@@ -113,7 +113,7 @@ app.get("/movies/delete/:ID", (req, res)=>{
 
 //==== step 10 UPDATE ====
 
-app.get("/movies/update/:ID", (req, res)=>{
+app.patch("/movies/update/:ID", (req, res)=>{
 
     const ID = parseInt(req.params.ID);
     const title = req.query.title;
